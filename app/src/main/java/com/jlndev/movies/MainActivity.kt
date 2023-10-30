@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.jlndev.movies.ui.theme.MoviesTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
