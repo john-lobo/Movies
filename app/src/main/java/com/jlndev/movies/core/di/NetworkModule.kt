@@ -1,4 +1,4 @@
-package com.jlndev.movies.di
+package com.jlndev.movies.core.di
 
 import com.jlndev.movies.BuildConfig
 import com.jlndev.movies.core.data.remote.MovieService
