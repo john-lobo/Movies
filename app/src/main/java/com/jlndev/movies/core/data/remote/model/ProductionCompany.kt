@@ -3,7 +3,7 @@ package com.jlndev.movies.core.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ProductionCompany(
+class ProductionCompany(
     @SerializedName("id")
     val id: Int,
     @SerializedName("logo_path")

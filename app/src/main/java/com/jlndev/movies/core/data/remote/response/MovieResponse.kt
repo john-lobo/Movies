@@ -4,7 +4,7 @@ package com.jlndev.movies.core.data.remote.response
 import com.google.gson.annotations.SerializedName
 import com.jlndev.movies.core.data.remote.model.MovieResult
 
-data class MovieReponse(
+class MovieResponse(
     @SerializedName("page")
     val page: Int,
     @SerializedName("results")

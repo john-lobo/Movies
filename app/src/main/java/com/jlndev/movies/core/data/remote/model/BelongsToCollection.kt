@@ -3,7 +3,7 @@ package com.jlndev.movies.core.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class BelongsToCollection(
+class BelongsToCollection(
     @SerializedName("backdrop_path")
     val backdropPath: String,
     @SerializedName("id")

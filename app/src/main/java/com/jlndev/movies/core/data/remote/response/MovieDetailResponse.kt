@@ -8,7 +8,7 @@ import com.jlndev.movies.core.data.remote.model.ProductionCompany
 import com.jlndev.movies.core.data.remote.model.ProductionCountry
 import com.jlndev.movies.core.data.remote.model.SpokenLanguage
 
-data class MovieDetailResponse(
+class MovieDetailResponse(
     @SerializedName("adult")
     val adult: Boolean,
     @SerializedName("backdrop_path")
