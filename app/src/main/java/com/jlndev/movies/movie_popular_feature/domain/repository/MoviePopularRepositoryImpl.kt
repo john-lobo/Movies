@@ -6,8 +6,9 @@ import androidx.paging.PagingData
 import com.jlndev.movies.core.domain.model.Movie
 import com.jlndev.movies.movie_popular_feature.domain.source.MoviePopularRemoteDataSource
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class MoviePopularRepositoryImpl(
+class MoviePopularRepositoryImpl @Inject constructor(
     private val remoteDataSource: MoviePopularRemoteDataSource
 ) : MoviePopularRepository {
 

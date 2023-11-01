@@ -3,8 +3,9 @@ package com.jlndev.movies.movie_popular_feature.domain.source
 import com.jlndev.movies.core.data.remote.MovieService
 import com.jlndev.movies.core.data.remote.response.MovieResponse
 import com.jlndev.movies.core.page.MoviePagingSource
+import javax.inject.Inject
 
-class MoviePopularRemoteDataSourceImpl(
+class MoviePopularRemoteDataSourceImpl @Inject constructor(
     private val service: MovieService
 ) : MoviePopularRemoteDataSource {
 
