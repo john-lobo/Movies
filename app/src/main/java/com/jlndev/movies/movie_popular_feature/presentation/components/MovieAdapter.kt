@@ -17,7 +17,7 @@ import androidx.paging.compose.LazyPagingItems
 import com.jlndev.movies.core.domain.model.Movie
 
 @Composable
-fun MovieContent(
+fun MovieAdapter(
     modifier: Modifier = Modifier,
     pagingMovies: LazyPagingItems<Movie>,
     paddingValue: PaddingValues,

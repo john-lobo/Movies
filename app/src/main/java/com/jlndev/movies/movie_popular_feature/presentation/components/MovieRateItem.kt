@@ -4,10 +4,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material.icons.Icons
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,7 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun MovieRate(
+fun MovieRateItem(
     rate: Double, modifier: Modifier
 ) {
     Row(
@@ -44,6 +44,6 @@ fun MovieRate(
 
 @Preview
 @Composable
-fun MovieRatePreview() {
-    MovieRate(rate = 5.0, modifier = Modifier)
+fun MovieRateItemPreview() {
+    MovieRateItem(rate = 5.0, modifier = Modifier)
 }

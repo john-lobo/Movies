@@ -1,9 +1,12 @@
 package com.jlndev.movies.core.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.jlndev.movies.movie_popular_feature.presentation.MoviePopularScreen
+import com.jlndev.movies.movie_popular_feature.presentation.MoviePopularViewModel
 
 @Composable
 fun NavigationGraph(navController: NavHostController) {
@@ -13,6 +16,11 @@ fun NavigationGraph(navController: NavHostController) {
     ) {
         composable(BottomNavItem.MoviePopular.route) {
 
+            val viewModel: MoviePopularViewModel = hiltViewModel()
+
+            MoviePopularScreen(
+                uiState = viewModel.uiState,
+                navigationToDetailMovie = {})
         }
 
         composable(BottomNavItem.MovieSeach.route) {

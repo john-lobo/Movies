@@ -19,9 +19,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import coil.compose.AsyncImage
+import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.jlndev.movies.R
-import com.jlndev.movies.core.domain.model.Movie
 
 @Composable
 fun MovieItem(
@@ -32,7 +32,7 @@ fun MovieItem(
     onClick: (id: Int) -> Unit
 ) {
     Box(modifier) {
-        MovieRate(
+        MovieRateItem(
             rate = voteAverage,
             modifier = modifier
                 .align(Alignment.BottomStart)
@@ -55,6 +55,8 @@ fun MovieItem(
                 .data(imageUrl)
                 .crossfade(true)
                 .error(R.drawable.ic_error_image)
+                .memoryCachePolicy(CachePolicy.ENABLED)
+                .diskCachePolicy(CachePolicy.ENABLED)
                 .placeholder(R.drawable.ic_placeholder)
                 .build(),
                 contentDescription = null,
