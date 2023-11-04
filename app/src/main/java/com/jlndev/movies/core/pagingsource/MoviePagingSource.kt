@@ -1,9 +1,9 @@
-package com.jlndev.movies.core.page
+package com.jlndev.movies.core.pagingsource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.jlndev.movies.core.domain.model.Movie
-import com.jlndev.movies.movie_popular_feature.data.mapper.toMovies
+import com.jlndev.movies.core.util.ext.toMovies
 import com.jlndev.movies.movie_popular_feature.domain.source.MoviePopularRemoteDataSource
 import okio.IOException
 

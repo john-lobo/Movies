@@ -1,4 +1,4 @@
-package com.jlndev.movies.core.presentation.navigation
+package com.jlndev.movies.ui.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel

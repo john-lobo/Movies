@@ -1,4 +1,4 @@
-package com.jlndev.movies.core.presentation.navigation
+package com.jlndev.movies.ui.presentation.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite

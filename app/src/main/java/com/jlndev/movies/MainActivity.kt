@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.jlndev.movies.core.presentation.MainScreen
+import com.jlndev.movies.ui.presentation.MainScreen
 import com.jlndev.movies.ui.theme.MoviesTheme
 import dagger.hilt.android.AndroidEntryPoint
 

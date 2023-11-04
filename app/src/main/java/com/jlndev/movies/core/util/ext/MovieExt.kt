@@ -1,8 +1,7 @@
-package com.jlndev.movies.movie_popular_feature.data.mapper
+package com.jlndev.movies.core.util.ext
 
 import com.jlndev.movies.core.data.remote.model.MovieResult
 import com.jlndev.movies.core.domain.model.Movie
-import com.jlndev.movies.core.util.toImageUrl
 
 fun List<MovieResult>.toMovies() = map {
     Movie(

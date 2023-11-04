@@ -1,4 +1,4 @@
-package com.jlndev.movies.core.util
+package com.jlndev.movies.core.util.ext
 
 import com.jlndev.movies.BuildConfig
 
