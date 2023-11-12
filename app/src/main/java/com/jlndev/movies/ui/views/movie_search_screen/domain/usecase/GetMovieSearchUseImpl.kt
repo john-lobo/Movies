@@ -11,7 +11,9 @@ class GetMovieSearchUseImpl @Inject constructor(private val repository: MovieSea
     override fun invoke(query: String): Flow<PagingData<MovieSearch>> {
         return repository.getPopularMovies(
             query = query,
-            pagingConfig = PagingConfig(20 ,20)
+            pagingConfig = PagingConfig(
+                pageSize = 20 ,
+                initialLoadSize = 20)
         )
     }
 }

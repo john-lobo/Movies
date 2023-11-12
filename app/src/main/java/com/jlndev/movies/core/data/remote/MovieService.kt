@@ -1,5 +1,6 @@
 package com.jlndev.movies.core.data.remote
 
+import com.jlndev.movies.core.data.remote.response.MovieDetailResponse
 import com.jlndev.movies.core.data.remote.response.MovieResponse
 import com.jlndev.movies.core.data.remote.response.SearchResponse
 import retrofit2.http.GET
@@ -21,7 +22,7 @@ interface MovieService {
     @GET("movie/{movie_id}")
     suspend fun getMovie(
         @Path("movie_id") movieId: Int
-    ): SearchResponse
+    ): MovieDetailResponse
 
     @GET("movie/{movie_id}/similar")
     suspend fun getMoviesSimilar(

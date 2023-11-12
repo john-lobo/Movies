@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Movies</string>
+    <string name="vote_average">Média de votos</string>
+    <string name="duration">Duração</string>
+    <string name="duration_minute">%1$s min</string>
+    <string name="release_date">Lançamento</string>
+    <string name="description">Descrição</string>
+    <string name="similar">Similares</string>
+    <string name="movie_similar">Filmes Similares\n</string>
+    <string name="detail_movie">Detalhes do filme</string>
 </resources>

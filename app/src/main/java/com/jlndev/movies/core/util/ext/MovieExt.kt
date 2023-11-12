@@ -3,6 +3,7 @@ package com.jlndev.movies.core.util.ext
 import com.jlndev.movies.core.data.remote.model.MovieResult
 import com.jlndev.movies.core.data.remote.model.SearchResult
 import com.jlndev.movies.core.domain.model.Movie
+import com.jlndev.movies.core.domain.model.MovieDetails
 import com.jlndev.movies.core.domain.model.MovieSearch
 
 fun List<MovieResult>.toMovies() = map {
@@ -19,5 +20,14 @@ fun List<SearchResult>.toMoviesSearch() = map {
         id = it.id,
         voteAverage = it.voteAverage,
         imageUrl = it.posterPath?.toImageUrl() ?: ""
+    )
+}
+
+fun MovieDetails.toMovie() : Movie {
+    return Movie(
+        id = id,
+        title = title,
+        voteAverage = voteAverage,
+        imageUrl = backdropPathUrl.toString()
     )
 }
