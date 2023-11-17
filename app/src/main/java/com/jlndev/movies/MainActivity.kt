@@ -12,7 +12,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.jlndev.movies.ui.presentation.navigation.BottomNavigationBar
+import com.jlndev.movies.ui.presentation.navigation.DetailScreenNav
 import com.jlndev.movies.ui.presentation.navigation.NavigationGraph
+import com.jlndev.movies.ui.presentation.navigation.currentRoute
 import com.jlndev.movies.ui.theme.MoviesTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,7 +40,9 @@ fun MainScreen(navController: NavHostController) {
             NavigationGraph(Modifier.padding(it), navController = navController)
         },
         bottomBar = {
-            BottomNavigationBar(navController = navController)
+            if(currentRoute(navHostController = navController) != DetailScreenNav.DetailScreen.route) {
+                BottomNavigationBar(navController = navController)
+            }
         }
     )
 }
