@@ -9,4 +9,7 @@
     <string name="movie_similar">Filmes Similares\n</string>
     <string name="detail_movie">Detalhes do filme</string>
     <string name="favorite_movies">Filmes Favoritos</string>
+    <string name="favorite_movies_empty">Nenhum filme favoritado</string>
+    <string name="popular_movies">Filmes populares</string>
+    <string name="search_movies">Pesquisar Filmes</string>
 </resources>
