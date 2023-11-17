@@ -1,5 +1,6 @@
 package com.jlndev.movies.core.util.ext
 
+import com.jlndev.movies.core.data.local.entity.MovieEntity
 import com.jlndev.movies.core.data.remote.model.MovieResult
 import com.jlndev.movies.core.data.remote.model.SearchResult
 import com.jlndev.movies.core.domain.model.Movie
@@ -29,5 +30,21 @@ fun MovieDetails.toMovie() : Movie {
         title = title,
         voteAverage = voteAverage,
         imageUrl = backdropPathUrl.toString()
+    )
+}
+
+fun Movie.toMovieEntity() : MovieEntity {
+    return MovieEntity(
+        movieId = id,
+        imageUrl = imageUrl,
+        title = title
+    )
+}
+
+fun List<MovieEntity>.toMoviesEntity() = map {
+    Movie(
+        id = it.movieId,
+        title = it.title,
+        imageUrl = it.imageUrl
     )
 }

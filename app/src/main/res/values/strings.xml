@@ -8,4 +8,5 @@
     <string name="similar">Similares</string>
     <string name="movie_similar">Filmes Similares\n</string>
     <string name="detail_movie">Detalhes do filme</string>
+    <string name="favorite_movies">Filmes Favoritos</string>
 </resources>

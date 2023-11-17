@@ -11,6 +11,8 @@ import androidx.navigation.navArgument
 import com.jlndev.movies.core.util.Constants
 import com.jlndev.movies.ui.views.movie_detail_screen.presentation.MovieDetailScreen
 import com.jlndev.movies.ui.views.movie_detail_screen.presentation.MovieDetailViewModel
+import com.jlndev.movies.ui.views.movie_favorite_screen.presentation.MovieFavoriteScreen
+import com.jlndev.movies.ui.views.movie_favorite_screen.presentation.state.MovieFavoriteViewModel
 import com.jlndev.movies.ui.views.movie_popular_screen.presentation.MoviePopularScreen
 import com.jlndev.movies.ui.views.movie_popular_screen.presentation.MoviePopularViewModel
 import com.jlndev.movies.ui.views.movie_search_screen.presentation.MovieSearchScreen
@@ -51,7 +53,14 @@ fun NavigationGraph(modifier: Modifier, navController: NavHostController) {
         }
 
         composable(BottomNavItem.MovieFavorite.route) {
-
+            val viewModel : MovieFavoriteViewModel = hiltViewModel()
+            val uiState = viewModel.uiState
+            MovieFavoriteScreen(
+                uiState = uiState,
+                navigateToDetailScreen = {
+                    navController.navigate(BottomNavItem.MovieDetail.passMovieId(it))
+                }
+            )
         }
 
         composable(
@@ -65,11 +74,15 @@ fun NavigationGraph(modifier: Modifier, navController: NavHostController) {
         ) {
             val viewModel: MovieDetailViewModel = hiltViewModel()
             val uiState = viewModel.uiState
+            val onAddFavorite = viewModel::onAddFavorite
+            val checkedFavorite = viewModel::checkedFavorite
             val getMovieDetail = viewModel::getMovieDetail
 
             MovieDetailScreen(
                 id = it.arguments?.getInt(Constants.MOVIE_DETAIL_ARGUMENT_KEY),
                 uiState = uiState,
+                onAddFavorite = onAddFavorite,
+                checkedFavorite = checkedFavorite,
                 getMovieDetail = getMovieDetail
             )
         }
