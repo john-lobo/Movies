@@ -1,5 +1,5 @@
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -78,15 +78,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-
     // Coil
     implementation ("io.coil-kt:coil-compose:2.2.2")
 
@@ -97,29 +88,29 @@ dependencies {
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
 
     // Splashscreen
-    implementation ("androidx.core:core-splashscreen:1.0.0")
+    implementation ("androidx.core:core-splashscreen:1.0.1")
 
     //Gson
     implementation ("com.google.code.gson:gson:2.10")
 
     // Others - Compose dependencies
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-    implementation ("androidx.compose.material:material-icons-extended:1.4.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+    implementation ("androidx.compose.material:material-icons-extended:1.5.4")
     implementation ("com.google.accompanist:accompanist-flowlayout:0.17.0")
-    implementation ("androidx.navigation:navigation-compose:2.7.4")
-    implementation("androidx.compose.material:material:1.2.0")
+    implementation ("androidx.navigation:navigation-compose:2.7.5")
+    implementation("androidx.compose.material:material:1.5.4")
 
     // Paging3
-    implementation ("androidx.paging:paging-runtime-ktx:3.1.1")
-    implementation ("androidx.paging:paging-compose:1.0.0-alpha18")
+    implementation ("androidx.paging:paging-runtime-ktx:3.2.1")
+    implementation ("androidx.paging:paging-compose:3.3.0-alpha02")
 
     // Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
     // Coroutine Lifecycle Scopes
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     // Retrofit
@@ -130,12 +121,38 @@ dependencies {
 
     //DI - Hilt
     implementation ("com.google.dagger:hilt-android:2.45")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
     kapt ("com.google.dagger:hilt-compiler:2.45")
-    kapt ("androidx.hilt:hilt-compiler:1.0.0")
+    kapt ("androidx.hilt:hilt-compiler:1.1.0")
 
     //Room
-    implementation ("androidx.room:room-ktx:2.4.2")
-    implementation ("androidx.room:room-runtime:2.4.2")
-    kapt ("androidx.room:room-compiler:2.4.2")
+    implementation ("androidx.room:room-ktx:2.6.1")
+    implementation ("androidx.room:room-runtime:2.6.1")
+    kapt ("androidx.room:room-compiler:2.6.1")
+
+    //TESTES
+
+    testImplementation ("junit:junit:4.13.2")
+
+    //truth
+    implementation ("com.google.truth:truth:1.1.3")
+    androidTestImplementation ("com.google.dagger:hilt-android-testing:2.45")
+    kaptAndroidTest ("com.google.dagger:hilt-android-compiler:2.45")
+    androidTestImplementation ("androidx.arch.core:core-testing:2.2.0")
+    androidTestImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    androidTestImplementation ("com.google.truth:truth:1.1.3")
+
+    // Dependência principal do Mockito
+    testImplementation ("org.mockito:mockito-core:2.28.2")
+
+    // Dependência do Mockito para testes no Android
+    androidTestImplementation ("org.mockito:mockito-android:2.28.2")
+
+    // Dependência do Mockito para ser possível mockar classes e métodos constantes
+    testImplementation ("org.mockito:mockito-inline:2.28.2")
+    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.5.4")
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.5.4")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.5.4")
 }
