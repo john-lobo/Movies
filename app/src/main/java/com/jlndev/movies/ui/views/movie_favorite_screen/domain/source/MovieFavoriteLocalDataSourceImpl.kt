@@ -16,7 +16,7 @@ class MovieFavoriteLocalDataSourceImpl @Inject constructor(
     }
 
     override suspend fun insert(movie: Movie) {
-        dao.insertMovies(movie.toMovieEntity())
+        dao.insertMovie(movie.toMovieEntity())
     }
 
     override suspend fun delete(movie: Movie) {

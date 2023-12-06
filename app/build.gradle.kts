@@ -23,7 +23,9 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.jlndev.movies.HiltTestRunner"
+
 
         buildConfigField("String", "API_KEY", apiKeyProperties.getProperty("API_KEY"))
         buildConfigField("String", "BASE_URL", apiKeyProperties.getProperty("BASE_URL"))
@@ -150,6 +152,7 @@ dependencies {
 
     // Dependência do Mockito para ser possível mockar classes e métodos constantes
     testImplementation ("org.mockito:mockito-inline:2.28.2")
+
     androidTestImplementation ("androidx.test.ext:junit:1.1.5")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.5.4")
