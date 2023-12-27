@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingConfig
 import com.jlndev.movies.core.domain.model.Movie
 import com.jlndev.movies.core.util.Constants
 import com.jlndev.movies.core.util.ResultData
@@ -29,7 +30,7 @@ class MovieDetailViewModel @Inject constructor(
     private val deleteMovieFavoriteUseCase: DeleteMovieFavoriteUseCase,
     private val isMovieFavoriteUseCase: IsMovieFavoriteUseCase,
     savedStateHandle: SavedStateHandle
-): ViewModel() {
+) : ViewModel() {
 
     var uiState by mutableStateOf(MovieDetailState())
         private set
@@ -52,19 +53,19 @@ class MovieDetailViewModel @Inject constructor(
     }
 
     fun onAddFavorite(movie: Movie) {
-        if(uiState.iconColor == Color.White) {
+        if (uiState.iconColor == Color.White) {
             event(MovieDetailEvent.AddFavorite(movie))
         } else {
             event(MovieDetailEvent.RemoveFavorite(movie))
         }
     }
 
-    private fun event(event : MovieDetailEvent) {
+    private fun event(event: MovieDetailEvent) {
         when (event) {
             is MovieDetailEvent.AddFavorite -> {
                 viewModelScope.launch {
                     addMovieFavoriteUseCase.invoke(
-                        movie = event.movie
+                        params = AddMovieFavoriteUseCase.Params(event.movie)
                     ).collectLatest { result ->
                         when (result) {
                             is ResultData.Loading -> {}
@@ -88,7 +89,7 @@ class MovieDetailViewModel @Inject constructor(
             is MovieDetailEvent.RemoveFavorite -> {
                 viewModelScope.launch {
                     deleteMovieFavoriteUseCase.invoke(
-                        movie = event.movie
+                        params = DeleteMovieFavoriteUseCase.Params(event.movie)
                     ).collectLatest { result ->
                         when (result) {
                             is ResultData.Loading -> {}
@@ -112,7 +113,7 @@ class MovieDetailViewModel @Inject constructor(
             is MovieDetailEvent.CheckedFavorite -> {
                 viewModelScope.launch {
                     isMovieFavoriteUseCase.invoke(
-                        movieId = event.movieId
+                        params = IsMovieFavoriteUseCase.Params(event.movieId)
                     ).collectLatest { result ->
                         when (result) {
                             is ResultData.Loading -> {}
@@ -135,35 +136,47 @@ class MovieDetailViewModel @Inject constructor(
 
             is MovieDetailEvent.GetMovieDetail -> {
                 viewModelScope.launch {
-                    getMovieDetailUseCase.invoke(event.movieId)
-                        .collect { resultData ->
-                            when(resultData) {
-                                is ResultData.Success -> {
-                                    uiState = uiState.copy(
-                                        isLoading = false,
-                                        movieDetails = resultData.data?.second,
-                                        results = resultData.data?.first ?: emptyFlow()
-                                    )
-                                }
-                                is ResultData.Error -> {
-                                    uiState = uiState.copy(
-                                        isLoading = false,
-                                        error = resultData.throwable?.message.toString()
-                                    )
-                                    UtilFunctions.logError(
-                                        "DETAIL_ERROR",
-                                        resultData.throwable?.message.toString()
-                                    )
-                                }
-                                is ResultData.Loading -> {
-                                    uiState = uiState.copy(
-                                        isLoading = true
-                                    )
-                                }
-                            }
+                    val resultData = getMovieDetailUseCase.invoke(
+                        GetMovieDetailUseCase.Params(
+                            movieId = event.movieId,
+                            pagingConfig = pagingConfig()
+                        )
+                    )
+                    when (resultData) {
+                        is ResultData.Success -> {
+                            uiState = uiState.copy(
+                                isLoading = false,
+                                movieDetails = resultData.data?.second,
+                                results = resultData.data?.first ?: emptyFlow()
+                            )
                         }
+
+                        is ResultData.Error -> {
+                            uiState = uiState.copy(
+                                isLoading = false,
+                                error = resultData.throwable?.message.toString()
+                            )
+                            UtilFunctions.logError(
+                                "DETAIL_ERROR",
+                                resultData.throwable?.message.toString()
+                            )
+                        }
+
+                        is ResultData.Loading -> {
+                            uiState = uiState.copy(
+                                isLoading = true
+                            )
+                        }
+                    }
                 }
             }
         }
+    }
+
+    private fun pagingConfig(): PagingConfig {
+        return PagingConfig(
+            pageSize = 20,
+            initialLoadSize = 20
+        )
     }
 }

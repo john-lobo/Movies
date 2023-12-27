@@ -3,7 +3,6 @@ package com.jlndev.movies.core.pagingsource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.jlndev.movies.core.domain.model.Movie
-import com.jlndev.movies.core.util.ext.toMovies
 import com.jlndev.movies.ui.views.movie_detail_screen.domain.source.MovieDetailsRemoteDataSource
 
 class MovieSimilarPagingSource(
@@ -23,16 +22,16 @@ class MovieSimilarPagingSource(
             val response = remoteDataSource.getMoviesSimilar(
                 page = pageNumber,
                 movieId = movieId)
-            val movies = response.results
+            val movies = response.movies
+            val totalPages = response.totalPages
 
             LoadResult.Page(
-                movies.toMovies(),
+                data = movies,
                 prevKey = if(pageNumber == 1) null else pageNumber - 1,
-                nextKey = if(movies.isEmpty()) null else pageNumber + 1
+                nextKey = if(pageNumber == totalPages) null else pageNumber + 1
             )
-        } catch (e: Exception) {
-            e.printStackTrace()
-            return LoadResult.Error(e)
+        } catch (exception : Exception) {
+            return LoadResult.Error(exception)
         }
     }
 }

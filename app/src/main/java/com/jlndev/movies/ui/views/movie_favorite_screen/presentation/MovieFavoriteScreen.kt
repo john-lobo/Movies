@@ -4,13 +4,13 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.jlndev.movies.R
+import com.jlndev.movies.core.domain.model.Movie
 import com.jlndev.movies.ui.presentation.components.common.MovieAppBar
 import com.jlndev.movies.ui.views.movie_favorite_screen.presentation.components.MovieFavoriteContent
-import com.jlndev.movies.ui.views.movie_favorite_screen.presentation.state.MovieFavoriteState
 
 @Composable
 fun MovieFavoriteScreen(
-    uiState: MovieFavoriteState,
+    movies: List<Movie>,
     navigateToDetailScreen: (Int) -> Unit
 ) {
     Scaffold (
@@ -22,7 +22,7 @@ fun MovieFavoriteScreen(
     ){
         MovieFavoriteContent(
             paddingValues = it,
-            movies = uiState.movies,
+            movies = movies,
             onClick =  { movieId ->
                 navigateToDetailScreen(movieId)
             }
@@ -34,7 +34,7 @@ fun MovieFavoriteScreen(
 @Composable
 fun MovieFavoriteScreenPreview() {
     MovieFavoriteScreen(
-        uiState = MovieFavoriteState(),
+        emptyList(),
         navigateToDetailScreen = {}
     )
 }

@@ -4,5 +4,6 @@ import com.jlndev.movies.core.util.ResultData
 import kotlinx.coroutines.flow.Flow
 
 interface IsMovieFavoriteUseCase {
-    suspend operator fun invoke(movieId: Int): Flow<ResultData<Boolean>>
+    suspend operator fun invoke(params: Params): Flow<ResultData<Boolean>>
+    data class Params(val movieId: Int)
 }

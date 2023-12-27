@@ -5,5 +5,8 @@ import com.jlndev.movies.core.util.ResultData
 import kotlinx.coroutines.flow.Flow
 
 interface DeleteMovieFavoriteUseCase {
-    suspend operator fun invoke(movie: Movie): Flow<ResultData<Unit>>
+    suspend operator fun invoke(params: Params): Flow<ResultData<Unit>>
+    data class Params(
+        val movie: Movie
+    )
 }

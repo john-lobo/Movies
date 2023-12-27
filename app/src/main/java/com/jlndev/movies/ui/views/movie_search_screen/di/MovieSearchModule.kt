@@ -5,8 +5,8 @@ import com.jlndev.movies.ui.views.movie_search_screen.domain.repository.MovieSea
 import com.jlndev.movies.ui.views.movie_search_screen.domain.repository.MovieSearchRepositoryImpl
 import com.jlndev.movies.ui.views.movie_search_screen.domain.source.MovieSearchRemoteDataSource
 import com.jlndev.movies.ui.views.movie_search_screen.domain.source.MovieSearchRemoteDataSourceImpl
-import com.jlndev.movies.ui.views.movie_search_screen.domain.usecase.GetMovieSearchUse
-import com.jlndev.movies.ui.views.movie_search_screen.domain.usecase.GetMovieSearchUseImpl
+import com.jlndev.movies.ui.views.movie_search_screen.domain.usecase.GetMovieSearchUseCase
+import com.jlndev.movies.ui.views.movie_search_screen.domain.usecase.GetMovieSearchUseCaseImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,7 +31,7 @@ object MovieSearchModule {
 
     @Provides
     @Singleton
-    fun provideMovieSearchUseCase(repository: MovieSearchRepository) : GetMovieSearchUse {
-        return GetMovieSearchUseImpl(repository)
+    fun provideMovieSearchUseCase(repository: MovieSearchRepository) : GetMovieSearchUseCase {
+        return GetMovieSearchUseCaseImpl(repository)
     }
 }

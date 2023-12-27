@@ -3,9 +3,7 @@ package com.jlndev.movies.core.pagingsource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.jlndev.movies.core.domain.model.MovieSearch
-import com.jlndev.movies.core.util.ext.toMoviesSearch
 import com.jlndev.movies.ui.views.movie_search_screen.domain.source.MovieSearchRemoteDataSource
-import okio.IOException
 
 class MovieSearchPagingSource(
     private val query: String,
@@ -22,16 +20,16 @@ class MovieSearchPagingSource(
         return try {
             val pageNumber = params.key ?: 1
             val response = remoteDataSource.getSearchMovies(query, pageNumber)
-            val movies = response.results
+            val movies = response.movies
+            val totalPages = response.totalPages
 
             LoadResult.Page(
-                movies.toMoviesSearch(),
+                data = movies,
                 prevKey = if(pageNumber == 1) null else pageNumber - 1,
-                nextKey = if(movies.isEmpty()) null else pageNumber + 1
+                nextKey = if(pageNumber == totalPages) null else pageNumber + 1
             )
 
-        } catch (exception: IOException) {
-            exception.printStackTrace()
+        } catch (exception: Exception) {
             return LoadResult.Error(exception)
         }
     }

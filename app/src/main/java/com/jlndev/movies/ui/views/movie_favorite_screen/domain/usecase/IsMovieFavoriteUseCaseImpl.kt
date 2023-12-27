@@ -11,10 +11,14 @@ import javax.inject.Inject
 class IsMovieFavoriteUseCaseImpl @Inject constructor(
     private val repository: MovieFavoriteRepository
 ) : IsMovieFavoriteUseCase {
-    override suspend fun invoke(movieId: Int): Flow<ResultData<Boolean>> {
+    override suspend fun invoke(params: IsMovieFavoriteUseCase.Params): Flow<ResultData<Boolean>> {
         return flow {
-            val isFavorite = repository.isFavorite(movieId)
-            emit(ResultData.Success(isFavorite))
+            try {
+                val isFavorite = repository.isFavorite(params.movieId)
+                emit(ResultData.Success(isFavorite))
+            } catch (exception: Exception) {
+                emit(ResultData.Error(exception))
+            }
         }.flowOn(Dispatchers.IO)
     }
 }
